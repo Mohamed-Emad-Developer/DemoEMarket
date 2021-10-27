@@ -1,0 +1,215 @@
+﻿@model IEnumerable<DemoEMarket.Models.Category>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- start slider -->
+<div class="slider">
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button"
+                        data-bs-target="#myCarousel"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"></button>
+                <button type="button"
+                        data-bs-target="#myCarousel"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button"
+                        data-bs-target="#myCarousel"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/images/panner1.png" alt="" />
+
+                    <div class="container">
+                        <div class="ovelay">
+                            <div class="carousel-caption text-start">
+                                <h1>Example headline.</h1>
+                                <p>
+                                    Some representative placeholder content for the first
+                                    slide of the carousel.
+                                </p>
+                                <p>
+                                    <a class="btn btn-lg bg-danger text-light" href="#">Sign up today</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/panner2.jpg" alt="" />
+
+                    <div class="container">
+                        <div class="ovelay">
+                            <div class="carousel-caption">
+                                <h1>Another example headline.</h1>
+                                <p>
+                                    Some representative placeholder content for the second
+                                    slide of the carousel.
+                                </p>
+                                <p>
+                                    <a class="btn btn-lg bg-danger text-light" href="#">Learn more</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/panner3.png" alt="" />
+
+                    <div class="container">
+                        <div class="ovelay">
+                            <div class="carousel-caption text-end">
+                                <h1>One more for good measure.</h1>
+                                <p>
+                                    Some representative placeholder content for the third
+                                    slide of this carousel.
+                                </p>
+                                <p>
+                                    <a class="btn btn-lg bg-danger text-light" href="#">Browse gallery</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#myCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"
+                      aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#myCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"
+                      aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- end slider -->
+<!-- start categories -->
+<div class="categories p-3" id="categories">
+    <div class="container p-5 rounded shadow-lg border-2">
+        <h1 class="text-center mb-5">Categories</h1>
+        <div class="row responsive">
+            @foreach(var category in Model)
+            {
+
+
+                <div class="col">
+                    <div class="category border shadow rounded-circle">
+                        @if (String.IsNullOrWhiteSpace(category.ImageName))
+                        {
+                            <img class="rounded-circle" src="~/images/uploads/category-def.png" alt="" />
+
+                        }
+                        else
+                        {
+                            <img class="rounded-circle" src="~/images/uploads/categories/@category.ImageName" alt="" />
+
+                        }
+                        <div class="overlay">
+                            <p class="h6 text-center">@category.Title</p>
+                        </div>
+                    </div>
+                </div>
+             }
+            
+        </div>
+    </div>
+</div>
+<!-- end categories -->
+<h1>@ViewBag.Hello</h1>
+<!-- start offers -->
+<div class="offers p-3" id="offers">
+    <div class="container p-5 rounded shadow-lg border-2">
+        <h1 class="text-center mb-5">Hot Deals</h1>
+        <div class="offer shadow-lg mb-4">
+            <div class="offer-flag bg-danger text-light">New Offer</div>
+            <img src="~/images/panner4.png" alt="" />
+        </div>
+        <div class="offer shadow-lg mb-4">
+            <div class="offer-flag bg-danger text-light">New Offer</div>
+            <img src="~/images/panner3.png" alt="" />
+        </div>
+    </div>
+</div>
+<!-- end offers -->
+<!-- start random items -->
+<div class="items p-3" id="items">
+    <div class="container shadow-lg p-5 rounded">
+        <h1 class="text-center mb-5">Some Items</h1>
+        <div class="row responsive">
+            @foreach(var category in Model)
+            {
+                foreach(var product in category.Products)
+                {
+
+                     <div class="col-md-6">
+                        <div class="item shadow-lg rounded-3">
+                            <div class="item-overlay">
+                                <a href="" class="text-light text-decoration-none">Details</a>
+                            </div>
+                            <img src="~/images/uploads/products/@product.ImageName" alt="" />
+                            <div class="item-info">
+                                <p class="my-2">Brand: @product.Category.Title</p>
+                                <h4><strong>@product.Name</strong></h4>
+                                <h5 class="text-danger"><strong>@product.Price L.E</strong></h5>
+                            </div>
+                            @*<a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@product.Id" class="btn btn-success d-block">
+                                <i class="fa fa-plus"></i>
+                            </a>*@
+                            <a asp-action="Details" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger d-block">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </div>
+                </div>
+                }
+            }
+           
+        </div>
+    </div>
+</div>
+<!-- end random items -->
+<!-- start new item -->
+<div class="new-item-sec mt-5 p-5">
+    <div class="container shadow-lg">
+        <div class="new-item">
+            <div class="new-item-flag bg-danger text-light">New</div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="item-img">
+                        <img src="~/images/Cooker.png" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="itemd-desc py-5">
+                        <h2><strong>Smart Cooker</strong></h2>
+                        <small class="text-muted">Price:</small>
+                        <h4 class="text-danger"><strong>7000 L.E</strong></h4>
+                        <div class="desc">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                            Cum, nulla esse aut quisquam asperiores, aliquam nemo magni
+                            repellat nisi dicta deserunt, alias rerum impedit maxime.
+                            Assumenda voluptatibus eligendi culpa id.
+                        </div>
+                        <a href="" class="btn btn-danger w-50">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end new item -->

@@ -1,0 +1,11 @@
+.cart {
+  margin-top: 100px;
+}
+.cart table img {
+  width: 150px;
+  height: 56px;
+  object-fit: contain;
+}
+.cart table i.fa.fa-trash {
+  font-size: 25px;
+}

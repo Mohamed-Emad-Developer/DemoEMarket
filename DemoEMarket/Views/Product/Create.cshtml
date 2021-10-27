@@ -1,0 +1,63 @@
+﻿@model DemoEMarket.Models.viewModel.ProductCategoryVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+@ViewBag.ErrorMessage
+<form method="post" asp-action="Create" asp-controller="Product" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Product.Name"></label>
+        <input asp-for="Product.Name" data-product-name="@Model.Product.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Product.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Categories"></label>
+        <select asp-for="Product.CategoryId" data-product-categoryId="@Model.Product.CategoryId" asp-items="Model.Categories" class="form-control">
+            <option selected>--Select Product Name--</option>
+        </select>
+        <span class="text-danger" asp-validation-for="Product.CategoryId"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Price"></label>
+        <input asp-for="Product.Price" data-product-price="@Model.Product.Price" type="number" class="form-control" />
+        <span class="text-danger" asp-validation-for="Product.Price"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.AvailableProducts"></label>
+        <input asp-for="Product.AvailableProducts" data-product-AvailableProducts="@Model.Product.AvailableProducts" type="number" class="form-control" />
+        <span class="text-danger" asp-validation-for="Product.AvailableProducts"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Description"></label>
+        <textarea asp-for="Product.Description" style="resize:none;height:150px;" class="form-control"></textarea>
+        <span class="text-danger" asp-validation-for="Product.Description"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Image"></label>
+        <input asp-for="Product.Image" name="Product.Image" type="file" class="form-control" />
+        <span class="text-danger" asp-validation-for="Product.Image"></span>
+    </div>
+    <button class="btn btn-success">add</button>
+
+</form>
+<a class="btn bg-warning" id="TestApi2">Test</a>
+
+ 
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+            $(document).ready(function () {
+                $("#TestApi2").on("click", function () {
+                    confirm("Hi");
+                });
+
+            });
+        </script>
+}
+

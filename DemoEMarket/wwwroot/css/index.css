@@ -1,0 +1,232 @@
+/*------------------- body -------------------*/
+/* body {
+} */
+
+/*---------------------------------------------------------*/
+/*------------------- side toggle menu -------------------*/
+@media (max-width: 991.98px) {
+  .offcanvas-collapse {
+    position: fixed;
+    top: 56px; /* Height of navbar */
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: #343a40;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+  .offcanvas-collapse.open {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-underline .nav-link {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.nav-underline .nav-link:hover {
+  color: #007bff;
+}
+
+.nav-underline .active {
+  font-weight: 500;
+  color: #343a40;
+}
+
+main {
+  margin-top: 55px;
+  background: white;
+}
+
+/*---------------------------------------------------------*/
+/*------------------- slider -------------------*/
+
+.carousel-item {
+  height: 25rem;
+}
+.carousel-item .ovelay {
+  background: #000000c2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+i.fa.fa-chevron-right,
+i.fa.fa-chevron-left {
+  position: absolute;
+  top: 25%;
+  /* background: #333; */
+  color: white;
+  padding: 10px;
+  z-index: 10;
+  width: 30px;
+}
+i.fa.fa-chevron-right {
+  right: 0;
+}
+/*---------------------------------------------------------*/
+/*-------------------. categories -------------------*/
+.categories .slick-list {
+  height: 160px;
+}
+.category {
+  width: 120px;
+  margin: 0 auto;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+.category img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.category .overlay {
+  background: #dc354585;
+  color: #f8f9fa;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  font-size: 12px;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  transform: scale(0);
+}
+.category:hover .overlay {
+  transform: scale(1);
+}
+
+/*---------------------------------------------------------*/
+/*-------------------- offers -------------------*/
+/* .offers {
+} */
+.offers .container {
+  background: #f8f8fa3d;
+}
+.offers .offer {
+  height: 270px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+}
+.offer-flag {
+  position: absolute;
+  padding: 5px;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 396px;
+  left: -136px;
+  top: 40px;
+}
+.offers .offer img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*---------------------------------------------------------*/
+/*-------------------- items -------------------*/
+.item {
+  /*width: 220px;*/
+  position: relative;
+  margin: 0 auto;
+}
+.item img {
+  width: 100%;
+  object-fit: contain;
+  height: 185px;
+}
+.item-info {
+  margin-left: 15px;
+}
+.item-overlay {
+  background: #dc354585;
+  color: #f8f9fa;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.5s ease-in-out;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 0;
+  visibility: hidden;
+}
+.item:hover .item-overlay {
+  height: 295px;
+  visibility: visible;
+}
+/*---------------------------------------------------------*/
+/*-------------------- new item -------------------*/
+.new-item-sec .new-item {
+  position: relative;
+  overflow: hidden;
+}
+.new-item-sec .new-item-flag {
+  position: absolute;
+  padding: 5px;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 396px;
+  left: -134px;
+  top: 40px;
+}
+.new-item-sec .item-img img {
+  width: 100%;
+  object-fit: cover;
+}
+.new-item-sec .item-img {
+  margin: 0 auto;
+  width: 250px;
+}
+.new-item-sec .desc {
+  max-width: 500px;
+  margin-bottom: 10px;
+}

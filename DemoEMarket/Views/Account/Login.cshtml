@@ -1,0 +1,40 @@
+﻿@model DemoEMarket.Models.ViewModel.LoginViewModel
+<h1>Login</h1>
+
+<div class="row">
+    <section class="LoginForm">
+        <form asp-action="Login" asp-controller="Account" method="post" id="account" autocomplete="off">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 offset-md-2 checkbox">
+                    <label asp-for="RememberMe" class="col-md-2">
+
+                        <input asp-for="RememberMe" />
+                    </label> Remember Me?
+                    <span asp-validation-for="RememberMe" class="text-danger"></span>
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit">Login</button>
+        </form>
+    </section>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

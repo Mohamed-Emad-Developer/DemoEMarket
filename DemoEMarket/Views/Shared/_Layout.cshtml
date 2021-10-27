@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/slick.css" />
+    <link rel="stylesheet" href="~/css/aos.css" />
+    <title>@ViewData["Title"] - DemoEommereceWeb</title>
+    <script src="~/js/jquery.js"></script>
+
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/aos.js"></script>
+    <style>
+       /* #carts-badge{
+            visibility: visible;
+        }*/
+    </style>
+</head>
+<body class="bg-light">
+    <!-- start navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-danger mb-5 shadow-lg"
+         aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home">E commerce</a>
+            <button class="navbar-toggler p-0 border-0"
+                    type="button"
+                    id="navbarSideCollapse"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse"
+                 id="navbarsExampleDefault">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"  asp-action="Index" asp-controller="Home">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Category">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  asp-action="Index" asp-controller="Product">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#offers">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        @*<a asp-action="ListOfCarts" asp-controller="Cart" class="nav-link"><i class="fa fa-shopping-cart"></i> Cart</a>*@
+                        <a  asp-action="ListOfCarts" asp-controller="Cart"  class="nav-link position-relative ">
+                            <i class="fa fa-shopping-cart"></i> Cart
+                            <span id="carts-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                @*99+*@
+                         
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                @*<form class="d-flex me-5">
+                    <input class="form-control me-2"
+                           type="search"
+                           placeholder="Search"
+                           aria-label="Search" />
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>*@
+                @*<ul class="navbar-nav">
+                </ul>*@
+                    <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+    <!-- end navbar -->
+    <main>
+        <div class="container">
+            @RenderBody()
+            <div id="testingApi"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (function () {
+            "use strict";
+
+            document
+                .querySelector("#navbarSideCollapse")
+                .addEventListener("click", function () {
+                    document
+                        .querySelector(".offcanvas-collapse")
+                        .classList.toggle("open");
+                });
+        })();
+    </script>
+    <script src="~/js/slick-script.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            method: "GET",
+            url: "/api/Carts/ListOfCarts",
+            success: function (response) {
+
+                $("#carts-badge").append(`${response.length}`);
+                if ($("#carts-badge").text().includes(0)) {
+                    $("#carts-badge").css({
+                        "visibility": "hidden"
+                    });
+                } 
+               
+              
+            }   
+        });
+    });
+</script>
+</body>
+</html>

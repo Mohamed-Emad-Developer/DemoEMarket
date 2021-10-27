@@ -1,0 +1,94 @@
+﻿@model DemoEMarket.Models.Product
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/productDetails.css" />
+
+<div class="item-details p-5">
+    <div class="conatier rounded shadow-lg">
+        <div class="row">
+            <div class="col-md-6" data-aos="fade-right">
+                <div class="item-img bg-light">
+                    <img src="~/images/uploads/products/@Model.ImageName" alt="" />
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <div class="item-info py-5">
+                    <p>Brand: @Model.Category.Title</p>
+                    <p class="h4 text-secondary">@Model.Name</p>
+                    <div class="rating text-warning">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p class="text-muted d-inline">Price:</p>
+                    <h3 class="text-danger d-inline"><strong>EGP @Model.Price</strong></h3>
+                    @if (Model.AvailableProducts > 0)
+                    {
+                        <h4 class="text-success">In Stock</h4>
+                    }
+                    else
+                    {
+                        <h4 class="text-danger">Not In Stock</h4>
+
+                    }
+                    modified at @Model.ModifiedDate.ToShortDateString() @Model.ModifiedDate.ToShortTimeString()
+                    <div class="item-desc w-75 my-5">
+                        @Model.Description
+                    </div>
+                    @if (Model.AvailableProducts == 0)
+                    {
+
+                        <a class="btn btn-outline-danger ms-md-5 mt-3 mt-md-0 disabled" style="cursor:no-drop;"><i class="fa fa-shopping-cart"></i> Add to cat</a>
+                    }
+                    else
+                    {
+                        <a asp-route-id="@Model.Id" asp-action="AddToCart" asp-controller="Cart" class="btn btn-outline-danger ms-md-5 mt-3 mt-md-0"><i class="fa fa-shopping-cart"></i> Add to cat</a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/js/slick-script.js"></script>
+
+    @*<script>
+        let plus = document.querySelector("#increase");
+        let minus = document.querySelector("#decrease");
+        let qty = document.querySelector("#qty");
+        plus.onclick = function () {
+            qty.value++;
+        };
+        minus.onclick = function () {
+            if (qty.value != 0) qty.value--;
+        };
+    </script>*@
+    <script>
+        AOS.init({
+            offset: 100,
+            duration: 1000,
+        });
+    </script>
+    <script>
+        window.onload = function () {
+            //Reference the DropDownList.
+            var qty = document.getElementById("qty");
+            var count = qty.getAttribute('data-qty');
+            
+            for (var i = 1; i <= count; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i;
+                option.value = i;
+                qty.appendChild(option);
+            }
+        };
+    </script>
+}

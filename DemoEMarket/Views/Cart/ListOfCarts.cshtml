@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DemoEMarket.Models.Cart>
+@{
+    ViewData["Title"] = "ListOfCarts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/cart.css" />
+
+<div class="cart">
+    <div class="container shadow-lg rounded py-5">
+        <table class="table table-responsive-lg table-striped">
+            <thead class="bg-danger text-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cart in Model)
+                {
+                    //var cost = cart.Product.Price * cart.Quantity;
+                    <tr>
+                        <td><strong>@cart.Product.Name</strong></td>
+                        <td><img src="~/images/uploads/products/@cart.Product.ImageName" alt="" /></td>
+                        <td>
+                            <a asp-action="DecreaseQuantity" asp-controller="Cart" asp-route-id="@cart.Id"
+                               class="btn btn-sm btn-danger fa fa-minus me-0 me-md-2"></a>
+                            <strong>@cart.Quantity</strong>
+                            <a asp-action="IncreaseQuantity" asp-controller="Cart" asp-route-id="@cart.Id"
+                               class="btn btn-sm btn-danger fa fa-plus ms-0 ms-md-2"></a>
+                        </td>
+                        <td><strong>EGP @cart.Cost</strong></td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Cart" asp-route-id="@cart.Id"><i class="fa fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                }
+
+
+                <tr>
+                    <td colspan="4"><strong>Total</strong></td>
+                    <td class="text-danger">
+                        <strong>EGP @Model.Sum(c => c.Cost)</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-action="CheckOut" asp-controller="Cart" class="btn btn-danger float-end w-50 text-light text-center">checkout</a>
+       @if(ViewBag.temp != null)
+            {
+
+         <h1> @ViewBag.temp </h1>
+            }
+    </div>
+</div>
